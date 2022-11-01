@@ -53,6 +53,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun initRecyclerView() {
         adapter=UserAdapter(usersList)
+        adapter.onItemClick={
+            var intent=Intent(this,ActualizarActivity::class.java)
+            intent.putExtra("id",it.id)
+            intent.putExtra("name",it.name)
+            intent.putExtra("email",it.email)
+            startActivity(intent)
+        }
         binding.rvUsers.layoutManager= LinearLayoutManager(this)
         binding.rvUsers.adapter=adapter
     }

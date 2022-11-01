@@ -1,10 +1,7 @@
 package com.cursos.moviles.adimer.laravelcrud
 
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.Headers
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface APIService {
     @GET("user")
@@ -12,5 +9,8 @@ interface APIService {
 
     @Headers("content-type: application/json")
     @POST("user")
-    suspend fun createUser(user: User) : Response<User>
+    suspend fun createUser( @Body user: User) : Response<User>
+
+    @PUT("user/{id}")
+    suspend fun updateUser(@Path("id") id: Int, @Body user: User) : Response<User>
 }
